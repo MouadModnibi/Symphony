@@ -26,6 +26,10 @@
         <li class="nav-item">
           <a class="nav-link btn btn-light text-purple" href="{{ route('create') }}" style="background-color: #d63384; color: white !important;">Add Song</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link btn btn-light text-purple" href="{{ route('create') }}" style="background-color: #d63384; color: white !important;">Add playlist</a>
+        </li>
       </ul>
 
       <!-- Search Form -->

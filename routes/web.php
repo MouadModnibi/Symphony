@@ -35,6 +35,7 @@ Route::put('/songs/{song}', [SongController::class,'update'])->name('songs.updat
 Route::get('/songs/search', [SongController::class, 'search'])->name('songs.search');
 
 
+Route::get('/playlist/create', [PController::class, 'search'])->name('songs.search');
 
 
 

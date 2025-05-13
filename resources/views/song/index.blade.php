@@ -8,4 +8,7 @@
 
 
 {{$songs->links()}}
+
+<x-musicplayer filePath="" title="" />
+
 </x-master>
