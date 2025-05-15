@@ -9,41 +9,32 @@
       </ul>
       </x-alert>
     @endif
-      <form method="POST" action="{{ route('Songs.update',$Song->title) }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('songs.update',$song->id) }}" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="mb-3">
-              <label class="form-label">Nom complet</label>
-              <input type="text" name="name" class="form-control" value="{{ old('name',$Song->name) }}">
+              <label class="form-label">title</label>
+              <input type="text" name="title" class="form-control" value="{{ old('title',$song->title) }}">
               @error('name')
                 <div class="text-danger">{{$message}}</div>  
               @enderror
             </div>
             <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="text" name="email" class="form-control" value="{{  old('email',$Song->email) }}">
-              @error('email')
+              <label class="form-label">Genre</label>
+              <input type="text" name="genre" class="form-control" value="{{  old('genre',$song->genre) }}">
+              @error('genre')
               <div class="text-danger">{{$message}}</div>  
             @enderror
-            </div>
             <div class="mb-3">
-              <label class="form-label">Mot de passe</label>
-              <input type="password" name="password" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Confirmation du mot de passe</label>
-              <input type="password" name="password_confirmation" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Description</label>
-              <textarea name="bio" class="form-control">{{  old('bio',$Song->bio) }}</textarea>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Image</label>
-              <input type="file" name="image" class="form-control">
-            </div>
-            <div class="d-grid my-2">
-              <button type="submit" class="btn btn-primary btn-block">Edit</button>
-            </div>
+            <label class="form-label">Image cover</label>
+            <input type="file" name="cover_image" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Song fiel</label>
+            <input type="file" name="file_path" class="form-control">
+          </div>
+          <div class="d-grid my-2">
+            <button type="submit" class="btn btn-primary btn-block">Edit</button>
+          </div>
       </form>
   </x-master>

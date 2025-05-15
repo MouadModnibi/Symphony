@@ -14,4 +14,10 @@ class Song extends Model
         'cover_image',
         'genre',
     ];
+            public function getImageAttribute($value) {
+
+        return $value??'song_im/song.png';
+    }
+    
 }
+

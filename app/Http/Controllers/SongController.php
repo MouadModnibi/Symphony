@@ -70,6 +70,27 @@ class SongController extends Controller
     return view('song.index', compact('songs'));
 }
 
+
+
+
+public function update(SongRequest $request,song $song)
+    {
+        
+        $formFields = $request->validated();
+        $this->uploadImage($request,$formFields);
+        $song->fill($formFields)->save();
+
+        return to_route('songs.edit',$song->id)->with('success','Your song has been updated successfuly !');
+
+    }
+
+    private function uploadImage(SongRequest $request,array &$formFields){
+        unset($formFields['cover_image']);
+        if($request->hasFile('cover_image')){
+            $formFields['cover_image'] = $request->file('cover_image')->store('song','public');
+        }
+    }
+
      
 }
  

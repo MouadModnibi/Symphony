@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
@@ -35,16 +36,16 @@ Route::put('/songs/{song}', [SongController::class,'update'])->name('songs.updat
 Route::get('/songs/search', [SongController::class, 'search'])->name('songs.search');
 
 
-Route::get('/playlist/create', [PController::class, 'search'])->name('songs.search');
-
-
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+Route::get('/user/{user}/settings', [UserController::class, 'settings'])->name('user.settings');
+Route::put('/user/{user}', [UserController::class,'update'])->name('user.update');
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('guest')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -58,4 +59,3 @@ require __DIR__.'/auth.php';
 
 Route::get('/notification',[NotificationController::class,'index']);
 
-Route::get('/settings',[SettingsController::class,'index']);
