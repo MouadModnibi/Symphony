@@ -73,16 +73,15 @@ class SongController extends Controller
 
 
 
-public function update(SongRequest $request,song $song)
-    {
-        
-        $formFields = $request->validated();
-        $this->uploadImage($request,$formFields);
-        $song->fill($formFields)->save();
+public function update(SongRequest $request, Song $song)
+{
+    $formFields = $request->validated();
+    $this->handleFileUploads($request, $formFields);
+    $song->fill($formFields)->save();
 
-        return to_route('songs.edit',$song->id)->with('success','Your song has been updated successfuly !');
+    return to_route('songs.edit', $song->id)->with('success', 'Your song has been updated successfully!');
+}
 
-    }
 
     private function uploadImage(SongRequest $request,array &$formFields){
         unset($formFields['cover_image']);
@@ -91,6 +90,18 @@ public function update(SongRequest $request,song $song)
         }
     }
 
-     
+     private function handleFileUploads(SongRequest $request, array &$formFields)
+{
+    unset($formFields['cover_image'], $formFields['file_path']);
+
+    if ($request->hasFile('cover_image')) {
+        $formFields['cover_image'] = $request->file('cover_image')->store('cover_images', 'public');
+    }
+
+    if ($request->hasFile('file_path')) {
+        $formFields['file_path'] = $request->file('file_path')->store('songs', 'public');
+    }
+}
+
 }
  

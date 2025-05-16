@@ -25,10 +25,10 @@ class UserRequest extends FormRequest
     {
         
             return [
-            'name' => 'required|min:3',
-            'email'=> 'required|email',
-            'password'=> 'required|min:1|max:50|confirmed',
-            'bio' => 'required',
+            'name' => 'min:3',
+            'email'=> 'email',
+            'password'=> '',
+            'bio' => '',
             'pfp' => 'image|mimes:png,jpg,jpeg,svg|max:10240'
         ];
         
