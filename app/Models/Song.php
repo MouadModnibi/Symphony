@@ -18,6 +18,11 @@ class Song extends Model
 
         return $value??'song_im/song.png';
     }
+    public function playlists()
+{
+    return $this->belongsToMany(Playlist::class);
+}
+
     
 }
 

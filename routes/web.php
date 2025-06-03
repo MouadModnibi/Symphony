@@ -8,7 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\NotificationController;
-
+use App\Http\Controllers\PlaylistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,12 +49,18 @@ Route::middleware('guest')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    
 });
 
+
+    Route::get('/playlists', [PlaylistController::class,'index'])->name('playlists.index');
+    Route::resource('playlists', PlaylistController::class);
+    Route::post('playlists/{playlist}/add-song', [PlaylistController::class, 'addSong'])->name('playlists.addSong');
+
+
+
 require __DIR__.'/auth.php';
-
-
-
 
 
 Route::get('/notification',[NotificationController::class,'index']);

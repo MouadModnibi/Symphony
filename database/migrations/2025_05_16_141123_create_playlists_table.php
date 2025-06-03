@@ -11,14 +11,18 @@ return new class extends Migration
      *
      * @return void
      */
-    /*public function up()
+    public function up()
     {
-        Schema::table('songs', function (Blueprint $table) {
-            $table->unsignedBigInteger('artist_id');
-            $table->foreign('artist_id_id')->refercens('id')->on('users')->cascadeOnDelete();
+        Schema::create('playlists', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('name');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // propriétair
+
+            
         });
-    }*/ 
-    
+    }
+
     /**
      * Reverse the migrations.
      *
@@ -26,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('songs', function (Blueprint $table) {
-           // $table->dropColumn('artist_id');
-        });
+        Schema::dropIfExists('playlists');
     }
 };

@@ -54,14 +54,17 @@
         </div>
 
         <!-- Tabs -->
-        <div class="border-t border-gray-200">
-            <nav class="flex">
-                <a href="#" class="px-6 py-4 text-sm font-medium text-blue-600 border-b-2 border-blue-600">Songs</a>
-                <a href="#" class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">Playlists</a>
-                <a href="#" class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">Likes</a>
-                <a href="#" class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">Following</a>
-            </nav>
-        </div>
+       <!-- Tabs -->
+<div class="border-t border-gray-200">
+    <nav class="flex">
+        <a href="#" class="px-6 py-4 text-sm font-medium text-blue-600 border-b-2 border-blue-600">Songs</a>
+        <a href="{{ route('playlists.index') }}" 
+           class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">Playlists</a>
+        <a href="#" class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">Likes</a>
+        <a href="#" class="px-6 py-4 text-sm font-medium text-gray-500 hover:text-gray-700">Following</a>
+    </nav>
+</div>
+
 
         <!-- Content Section -->
         <div class="p-6">

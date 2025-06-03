@@ -81,13 +81,13 @@
                             </a>
                             @endif
                             
-                            <a href="#" class="bg-blue-600 text-white hover:bg-blue-700 px-3 py-1.5 rounded-md text-sm font-medium flex items-center transition-colors duration-200 mr-2">
+                            <a href="{{route('playlists.index')}}" class="bg-blue-600 text-white hover:bg-blue-700 px-3 py-1.5 rounded-md text-sm font-medium flex items-center transition-colors duration-200 mr-2">
                                 <i class="fas fa-list mr-1"></i> Playlist
                             </a>
 
                             <!-- User dropdown -->
                             <div class="relative ml-2" x-data="{ open: false }">
-                                <button @click="open = !open" class="flex items-center space-x-1 focus:outline-none">
+                                <button @click= "open = !open" class="flex items-center space-x-1 focus:outline-none">
                                     <img src="{{ asset('storage/' . auth()->user()->pfp) }}" alt="Profile" class="h-8 w-8 rounded-full border-2 border-blue-300">
                                     <span class="hidden md:inline text-blue-900 text-sm font-medium">{{ auth()->user()->name }}</span>
                                     <i class="fas fa-chevron-down text-blue-900 text-xs ml-1 transition-transform duration-200" :class="{'transform rotate-180': open}"></i>
