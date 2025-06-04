@@ -10,6 +10,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PlaylistController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,12 +63,16 @@ Route::middleware('guest')->group(function () {
     Route::delete('playlists/{playlist}/songs/{song}', [SongController::class, 'destroy'])->name('songs.destroy');
     Route::post('playlists/{playlist}/add-song', [PlaylistController::class, 'addSong'])->name('playlists.addSong');
    Route::delete('/playlists/{playlist}/songs/{song}', [PlaylistController::class, 'removeSong'])->name('playlists.removeSong');
-Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
 
 
 
 
-
+// Pages statiques
+Route::view('/about', 'pages.about')->name('about');
+Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/privacy', 'pages.privacy')->name('privacy');
+Route::view('/terms', 'pages.terms')->name('terms');
+Route::view('/faq', 'pages.faq')->name('faq');
 
 
 
