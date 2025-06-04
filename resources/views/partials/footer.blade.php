@@ -62,4 +62,6 @@
             &copy; {{ now()->year }} Symphony Music App. All rights reserved.
         </div>
     </div>
+  
+
 </footer>
