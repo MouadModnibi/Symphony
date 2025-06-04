@@ -21,7 +21,7 @@
             <div class="flex justify-between items-start">
                 <div>
                     <h1 class="text-2xl font-bold text-gray-800">{{ $user->name }}</h1>
-                    <p class="text-gray-600 mt-1">{{ $user->role ?? 'Music Enthusiast' }}</p>
+                    
                 </div>
                 @if(auth()->id() === $user->id)
                 <a href="{{ route('user.settings',$user) }}" 

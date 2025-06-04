@@ -1,15 +1,15 @@
-@props(['filePath', 'title'])
+@props(['filePath', 'title', 'coverImage' => null])
 
 <div id="bottomPlayer" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white hidden p-3 shadow-lg z-50 transform transition-transform duration-300 translate-y-full">
     <div class="container mx-auto flex items-center justify-between gap-4">
         <!-- Song Info -->
         <div class="flex items-center gap-3 min-w-0">
             <div class="flex-shrink-0">
-                <div class="h-10 w-10 bg-gray-700 rounded"></div>
+                <img id="playerCoverImage" src="{{ $coverImage ? asset('storage/' . $coverImage) : '' }}" class="h-10 w-10 rounded object-cover" alt="">
             </div>
             <div class="min-w-0">
                 <p id="songTitle" class="text-sm font-medium truncate">{{ $title }}</p>
-                <p class="text-xs text-gray-400 truncate">Artist Name</p>
+                <p id="songArtist" class="text-xs text-gray-400 truncate">Artist Name</p>
             </div>
         </div>
 
@@ -47,9 +47,8 @@
             </div>
         </div>
 
-        <!-- Volume and Other Controls -->
+        <!-- Volume and Close -->
         <div class="flex items-center gap-3">
-            <!-- Volume Control -->
             <div class="flex items-center gap-2 w-24">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
@@ -57,7 +56,6 @@
                 <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer" />
             </div>
 
-            <!-- Close Button -->
             <button id="closePlayer" class="text-gray-400 hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -66,103 +64,94 @@
         </div>
     </div>
 
-    <!-- Hidden audio element -->
     <audio id="bottomAudio" class="hidden"></audio>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const audio = document.getElementById("bottomAudio");
-        const progressBar = document.getElementById("progressBar");
-        const volumeControl = document.getElementById("volumeControl");
-        const togglePlay = document.getElementById("togglePlay");
-        const playIcon = document.getElementById("playIcon");
-        const pauseIcon = document.getElementById("pauseIcon");
-        const currentTimeEl = document.getElementById("currentTime");
-        const durationEl = document.getElementById("duration");
-        const closePlayer = document.getElementById("closePlayer");
-        const bottomPlayer = document.getElementById("bottomPlayer");
+document.addEventListener('DOMContentLoaded', function () {
+    const audio = document.getElementById("bottomAudio");
+    const progressBar = document.getElementById("progressBar");
+    const volumeControl = document.getElementById("volumeControl");
+    const togglePlay = document.getElementById("togglePlay");
+    const playIcon = document.getElementById("playIcon");
+    const pauseIcon = document.getElementById("pauseIcon");
+    const currentTimeEl = document.getElementById("currentTime");
+    const durationEl = document.getElementById("duration");
+    const closePlayer = document.getElementById("closePlayer");
+    const bottomPlayer = document.getElementById("bottomPlayer");
+    const coverImageEl = document.getElementById("playerCoverImage");
 
-        // Format time from seconds to MM:SS
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    window.showBottomPlayer = function (title, filePath, coverImage = '') {
+        bottomPlayer.classList.remove("hidden");
+        setTimeout(() => {
+            bottomPlayer.classList.remove("translate-y-full");
+        }, 10);
+
+        document.getElementById("songTitle").textContent = title;
+
+        if (coverImage) {
+            coverImageEl.src = coverImage;
         }
 
-        // Show the player and control audio
-        window.showBottomPlayer = function(title, filePath) {
-            // Show the player with animation
-            bottomPlayer.classList.remove("hidden");
-            setTimeout(() => {
-                bottomPlayer.classList.remove("translate-y-full");
-            }, 10);
+        audio.src = filePath;
+        audio.load();
+        audio.play();
+        playIcon.classList.add("hidden");
+        pauseIcon.classList.remove("hidden");
 
-            // Set song info
-            document.getElementById("songTitle").textContent = title;
-            
-            // Set audio source and load
-            audio.src = filePath;
-            audio.load();
+        audio.ontimeupdate = () => {
+            if (!isNaN(audio.duration)) {
+                progressBar.value = (audio.currentTime / audio.duration) * 100;
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+            }
+        };
+
+        audio.onloadedmetadata = () => {
+            durationEl.textContent = formatTime(audio.duration);
+        };
+
+        audio.onended = () => {
+            playIcon.classList.remove("hidden");
+            pauseIcon.classList.add("hidden");
+        };
+    };
+
+    progressBar.oninput = () => {
+        if (!isNaN(audio.duration)) {
+            audio.currentTime = (progressBar.value / 100) * audio.duration;
+        }
+    };
+
+    volumeControl.oninput = () => {
+        audio.volume = volumeControl.value;
+    };
+
+    togglePlay.onclick = () => {
+        if (audio.paused) {
             audio.play();
             playIcon.classList.add("hidden");
             pauseIcon.classList.remove("hidden");
+        } else {
+            audio.pause();
+            playIcon.classList.remove("hidden");
+            pauseIcon.classList.add("hidden");
+        }
+    };
 
-            // Update progress bar as audio plays
-            audio.ontimeupdate = () => {
-                if (!isNaN(audio.duration)) {
-                    progressBar.value = (audio.currentTime / audio.duration) * 100;
-                    currentTimeEl.textContent = formatTime(audio.currentTime);
-                }
-            };
-
-            // Update duration when metadata is loaded
-            audio.onloadedmetadata = () => {
-                durationEl.textContent = formatTime(audio.duration);
-            };
-
-            // When audio ends
-            audio.onended = () => {
-                playIcon.classList.remove("hidden");
-                pauseIcon.classList.add("hidden");
-            };
-        };
-
-        // Seek functionality
-        progressBar.oninput = () => {
-            if (!isNaN(audio.duration)) {
-                const seekTime = (progressBar.value / 100) * audio.duration;
-                audio.currentTime = seekTime;
-            }
-        };
-
-        // Volume control
-        volumeControl.oninput = () => {
-            audio.volume = volumeControl.value;
-        };
-
-        // Toggle play/pause
-        togglePlay.onclick = () => {
-            if (audio.paused) {
-                audio.play();
-                playIcon.classList.add("hidden");
-                pauseIcon.classList.remove("hidden");
-            } else {
-                audio.pause();
-                playIcon.classList.remove("hidden");
-                pauseIcon.classList.add("hidden");
-            }
-        };
-
-        // Close player
-        closePlayer.onclick = () => {
-            bottomPlayer.classList.add("translate-y-full");
-            setTimeout(() => {
-                bottomPlayer.classList.add("hidden");
-                audio.pause();
-                playIcon.classList.remove("hidden");
-                pauseIcon.classList.add("hidden");
-            }, 300);
-        };
-    });
+    closePlayer.onclick = () => {
+        bottomPlayer.classList.add("translate-y-full");
+        setTimeout(() => {
+            bottomPlayer.classList.add("hidden");
+            audio.pause();
+            playIcon.classList.remove("hidden");
+            pauseIcon.classList.add("hidden");
+        }, 300);
+    };
+});
 </script>

@@ -38,11 +38,7 @@
                             <i class="fas fa-home mr-2"></i> Home
                         </a>
                         
-                        @auth
-                        <a href="/notification" class="text-blue-900 hover:bg-blue-200/50 px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors duration-200">
-                            <i class="fas fa-bell mr-2"></i> Notifications
-                        </a>
-                        @endauth
+                        
                         
                         <a href="/songs" class="text-blue-900 hover:bg-blue-200/50 px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors duration-200">
                             <i class="fas fa-music mr-2"></i> Songs

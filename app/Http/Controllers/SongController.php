@@ -42,8 +42,7 @@ class SongController extends Controller
        return redirect()->route('songs.index')->with('success','The song has been added successfully ! ');
      }
 
-
-
+        
 
 
 

@@ -11,6 +11,7 @@
 
         <!-- Songs Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+            
             @foreach ($songs as $song)
                 <x-song-card :song="$song" />
             @endforeach
@@ -18,7 +19,7 @@
 
         <!-- Pagination -->
         <div class="mt-10 flex justify-center">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4"> 
                 {{ $songs->links() }}
             </div>
         </div>

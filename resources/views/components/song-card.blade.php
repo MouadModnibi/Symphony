@@ -9,7 +9,11 @@
         
         <!-- Play Button (appears on hover) -->
         <button 
-            onclick="showBottomPlayer('{{ $song->title }}', '{{ asset('storage/' . $song->file_path) }}')"
+            onclick="showBottomPlayer(
+         '{{ $song->title }}',
+         '{{ asset('storage/' . $song->file_path) }}',
+         '{{ asset('storage/' . $song->cover_image) }}'
+     )"
             class="absolute bottom-2 right-2 bg-green-500 hover:bg-green-400 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg transform translate-y-2 group-hover:translate-y-0"
         >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
