@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PlaylistController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,7 +57,17 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/playlists', [PlaylistController::class,'index'])->name('playlists.index');
     Route::resource('playlists', PlaylistController::class);
+    Route::resource('playlists', PlaylistController::class);
+    Route::post('playlists/{playlist}/songs', [SongController::class, 'store'])->name('songs.store');
+    Route::delete('playlists/{playlist}/songs/{song}', [SongController::class, 'destroy'])->name('songs.destroy');
     Route::post('playlists/{playlist}/add-song', [PlaylistController::class, 'addSong'])->name('playlists.addSong');
+   Route::delete('/playlists/{playlist}/songs/{song}', [PlaylistController::class, 'removeSong'])->name('playlists.removeSong');
+Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
+
+
+
+
+
 
 
 

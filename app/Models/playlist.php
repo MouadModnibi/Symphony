@@ -23,4 +23,5 @@ public function songs()
     return $this->belongsToMany(Song::class); // ou Music::class
 }
 
+
 }  
