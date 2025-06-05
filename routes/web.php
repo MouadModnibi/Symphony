@@ -74,7 +74,14 @@ Route::view('/privacy', 'pages.privacy')->name('privacy');
 Route::view('/terms', 'pages.terms')->name('terms');
 Route::view('/faq', 'pages.faq')->name('faq');
 
+Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup');
 
+Route::get('/start-trial', function () {
+    if(auth()->check()) {
+        return redirect()->route('compte');
+    }
+    return redirect('/register'); // URL directe si pas de nom de route défini
+})->name('start-trial');
 
 require __DIR__.'/auth.php';
 
