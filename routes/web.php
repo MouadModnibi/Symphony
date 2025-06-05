@@ -5,10 +5,12 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\PlaylistController;
 
 
 /*
@@ -76,8 +78,18 @@ Route::view('/faq', 'pages.faq')->name('faq');
 
 
 
+Route::prefix('premium')->group(function () {
+    Route::get('/', [PremiumController::class, 'showPlans'])->name('premium');
+    Route::get('/pay/{plan}', [PremiumController::class, 'pay'])->name('premium.pay');
+    Route::post('/process', [PremiumController::class, 'processPayement'])->name('premium.process');
+    Route::get('/success', [PremiumController::class, 'success'])->name('premium.success');
+    Route::post('/cancel', [PremiumController::class, 'cancel'])->name('premium.cancel');
+});
+
+
+
 require __DIR__.'/auth.php';
 
 
-Route::get('/notification',[NotificationController::class,'index']);
+
 

@@ -45,7 +45,7 @@
                         </a>
                     </div>
                 </div>
-
+                
                 <!-- Search and user section -->
                 <div class="flex items-center">
                     <!-- Search form -->
@@ -77,10 +77,33 @@
                             </a>
                             @endif
                             
-                            <a href="{{route('playlists.index')}}" class="bg-blue-600 text-white hover:bg-blue-700 px-3 py-1.5 rounded-md text-sm font-medium flex items-center transition-colors duration-200 mr-2">
-                                <i class="fas fa-list mr-1"></i> Playlist
-                            </a>
+                            <!-- In your navbar (replace the existing playlist link) -->
+<a href="{{ route('playlists.index') }}" 
+   class="relative flex items-center px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 group"
+   style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);">
+   
+   <!-- Small music icon with animation -->
+   <span class="mr-2 relative">
+      <i class="fas fa-music text-xs text-white"></i>
+      <span class="absolute -right-1 -top-1 h-1.5 w-1.5 bg-pink-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse"></span>
+   </span>
+   
+   <!-- Text -->
+   <span class="text-white">Playlists</span>
+   
+   <!-- Hover effect underline -->
+   <span class="absolute bottom-0 left-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-300"></span>
+</a>
 
+                           <a href="{{route('premium')}}" class="relative group bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:from-purple-700 hover:to-blue-600 px-4 py-1.5 rounded-md text-sm font-medium flex items-center transition-all duration-200 shadow-lg hover:shadow-xl">
+    <i class="fas fa-crown mr-2 text-yellow-300"></i> 
+    <span>Explore Premium</span>
+    
+    <!-- Optional: Sparkle effect on hover -->
+    <span class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+    <span class="absolute -top-1 -right-3 h-2 w-2 rounded-full bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+    <span class="absolute -top-3 -right-2 h-2 w-2 rounded-full bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></span>
+</a>
                             <!-- User dropdown -->
                             <div class="relative ml-2" x-data="{ open: false }">
                                 <button @click= "open = !open" class="flex items-center space-x-1 focus:outline-none">
