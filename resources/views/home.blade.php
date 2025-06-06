@@ -1,4 +1,4 @@
-<x-master title="MusicHub - Découvrez votre prochain son préféré">
+<x-master  title="MusicHub - Découvrez votre prochain son préféré">
     <!-- Hero Section -->
     <div class="relative bg-gradient-to-b from-purple-900 to-gray-900 text-white overflow-hidden">
         <div class="absolute inset-0 opacity-30">
@@ -10,7 +10,7 @@
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">Your unlimited musical universe</h1>
                 <p class="text-xl md:text-2xl mb-8">Discover, listen to, and share millions of tracks created by artists from around the world.</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a  href="{{ url('/start-trial') }}" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    <a  href="{{route('premium')}}" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-full font-medium transition duration-300 transform hover:scale-105">
                           Start your free trial
                     </a>
                     <a href="/songs" class="px-8 py-3 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-full font-medium transition duration-300 border border-white border-opacity-30">
@@ -38,7 +38,7 @@
                 <!-- Playlist Card 1 -->
                 <a href="/playlist/1" class="group">
                     <div class="relative overflow-hidden rounded-lg aspect-square mb-3">
-                        <img src="https://source.unsplash.com/random/300x300/?music,playlist,1" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="https://m.media-amazon.com/images/I/51h2PhUh1LL._UXNaN_FMjpg_QL85_.jpg" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition duration-300"></div>
                         <button class="absolute bottom-3 right-3 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-2 group-hover:translate-y-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -46,14 +46,14 @@
                             </svg>
                         </button>
                     </div>
-                    <h3 class="font-medium text-gray-900 group-hover:text-purple-600 transition">Top Hits 2023</h3>
-                    <p class="text-sm text-gray-500">50 titres • 3h42</p>
+                    <h3 class="font-medium text-gray-900 group-hover:text-purple-600 transition">Top Hits 2025</h3>
+                    <p class="text-sm text-gray-500">50 titles • 3h42</p>
                 </a>
                 
                 <!-- Playlist Card 2 -->
                 <a href="/playlist/2" class="group">
                     <div class="relative overflow-hidden rounded-lg aspect-square mb-3">
-                        <img src="https://source.unsplash.com/random/300x300/?music,playlist,2" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27395ce36c00a2f3ed2f6436ebf" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition duration-300"></div>
                         <button class="absolute bottom-3 right-3 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-2 group-hover:translate-y-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -62,8 +62,71 @@
                         </button>
                     </div>
                     <h3 class="font-medium text-gray-900 group-hover:text-purple-600 transition">Chill Vibes</h3>
-                    <p class="text-sm text-gray-500">35 titres • 2h15</p>
+                    <p class="text-sm text-gray-500">35 titles • 2h15</p>
                 </a>
+
+                <a href="/playlist/1" class="group">
+                    <div class="relative overflow-hidden rounded-lg aspect-square mb-3">
+                        <img src="https://i1.sndcdn.com/artworks-FDmrzyn7ptB28ynL-4CF7Ug-t500x500.jpg" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition duration-300"></div>
+                        <button class="absolute bottom-3 right-3 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h3 class="font-medium text-gray-900 group-hover:text-purple-600 transition">Workout music</h3>
+                    <p class="text-sm text-gray-500">40 titless • 1h42</p>
+                </a>
+
+
+                <a href="/playlist/1" class="group">
+                    <div class="relative overflow-hidden rounded-lg aspect-square mb-3">
+                        <img src="https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/1/ab6761610000e5eb39ba6dcd4355c03de0b50918/en" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition duration-300"></div>
+                        <button class="absolute bottom-3 right-3 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h3 class="font-medium text-gray-900 group-hover:text-purple-600 transition">Daily mix 01</h3>
+                    <p class="text-sm text-gray-500">30 titless • 1h21</p>
+                </a>
+
+                <a href="/playlist/1" class="group">
+                    <div class="relative overflow-hidden rounded-lg aspect-square mb-3">
+                        <img src="https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/2/ab6761610000e5eb19c2790744c792d05570bb71/en" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition duration-300"></div>
+                        <button class="absolute bottom-3 right-3 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h3 class="font-medium text-gray-900 group-hover:text-purple-600 transition">Daily mix 02</h3>
+                    <p class="text-sm text-gray-500">30 titless • 2h12</p>
+                </a>
+
+
+                <a href="/playlist/1" class="group">
+                    <div class="relative overflow-hidden rounded-lg aspect-square mb-3">
+                        <img src="https://pickasso.spotifycdn.com/image/ab67c0de0000deef/dt/v1/img/daily/3/ab6761610000e5ebe187dca750abfd3688836309/en" alt="Playlist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition duration-300"></div>
+                        <button class="absolute bottom-3 right-3 w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h3 class="font-medium text-gray-900 group-hover:text-purple-600 transition">Daily mix 03</h3>
+                    <p class="text-sm text-gray-500">30 titless • 3h42</p>
+                </a>
+
+                
+
+
+              
                 
                 <!-- Add 4 more playlist cards similarly -->
             </div>
@@ -127,7 +190,7 @@
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-6">Ready to experience Symphony?</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Try it free for 30 days. Cancel anytime..</p>
-            <a href="/signup" class="inline-block px-8 py-3 bg-white text-purple-600 rounded-full font-bold hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+            <a href="{{ route('premium.pay', ['plan' => 'premium']) }}" class="inline-block px-8 py-3 bg-white text-purple-600 rounded-full font-bold hover:bg-gray-100 transition duration-300 transform hover:scale-105">
               Launch your free trial
             </a>
         </div>
